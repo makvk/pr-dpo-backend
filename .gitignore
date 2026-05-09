@@ -1,0 +1,12 @@
+.DS_Store
+*.docx
+bin/
+obj/
+packages/
+appsettings.Development.json
+appsettings.Production.json
+.vs/
+.vscode/
+*.user
+*.log
+TestResults/
