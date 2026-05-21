@@ -6,17 +6,15 @@ using CampusRouteLab.Endpoints;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// builder.Services.AddEndpointsApiExplorer();
 
 services.AddCampusServices();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 app.UseRequestMiddleware();
 app.UseEndpoints();
-
-app.UseSwagger();
-app.UseSwaggerUI();
 
 app.Run();

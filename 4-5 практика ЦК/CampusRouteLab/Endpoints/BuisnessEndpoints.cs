@@ -11,7 +11,7 @@ public static class BuisnessEndpoints
     {
         app.MapGet("/", () =>
         {
-            return Results.Redirect("/swagger");
+            return Results.Redirect("/index.html");
         });
         app.MapGet("/students", (IStudentCatalogService service) =>
         {
@@ -27,15 +27,39 @@ public static class BuisnessEndpoints
             return Results.Ok(res);
         });
 
-        app.MapGet("/students/{group}/{id}", (string group, int id, IStudentCatalogService service) =>
+        app.MapGet("/students/{group}/{id:int}", (string group, int id, IStudentCatalogService service) =>
         {
-            var res = service.GetByGroupId(group, id);
+            Student? res = service.GetByGroupId(group, id);
 
             if (res == null)
             {
                 return Results.NotFound();
             } 
             return Results.Ok(res);
+        });
+
+        app.MapGet("/reports/{section?}", (string? section) =>
+        {
+            if (section == null)
+            {
+                section = "overview";
+            }
+            return Results.Text(section);
+        });
+
+        app.MapGet("/portal/{module=home}/{page=index}/{id:int?}", (string module, string page, int? id) =>
+        {
+            var msg = $"Module: {module}, Page: {page}, Id: {id}";
+            return Results.Text(msg);
+        });
+
+        app.MapGet("/files/{**path}", (string? path) =>
+        {
+            if (path == null)
+            {
+                return Results.Text("/");
+            }
+            return Results.Text("/" + path);
         });
     }
 }

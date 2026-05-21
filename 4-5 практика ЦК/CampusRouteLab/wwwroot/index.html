@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>CampusRouteLab - Тестовое приложение</title>
+    </head>
+    <body>
+        <h1>CampusRouteLab</h1>
+        <p>Обязательные маршруты и поведение приложения</p>
+        
+        <h2>Бизнес-маршруты</h2>
+        <table border='1'>
+            <tr>
+                <th>Маршрут</th>
+                <th>Ожидаемое поведение</th>
+                <th>Формат ответа</th>
+            </tr>
+            <tr>
+                <td><a href='/students'>/students</a></td>
+                <td>Вернуть список доступных учебных групп и количество студентов в каждой группе.</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <td><a href='/students/ИКБО-30-24'>/students/ИКБО-30-24</a></td>
+                <td>Вернуть информацию по одной группе и список студентов этой группы. Параметр group обязателен.</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <td><a href='/students/ИКБО-30-24/1'>/students/ИКБО-30-24/1</a></td>
+                <td>Вернуть одного студента по группе и идентификатору. Если студент не найден — корректный 404.</td>
+                <td>JSON/404</td>
+            </tr>
+            <tr>
+                <td><a href='/reports'>/reports/{section?}</a></td>
+                <td>Маршрут с необязательным параметром. Если section не передан, использовать значение overview.</td>
+                <td>Text</td>
+            </tr>
+            <tr>
+                <td><a href='/portal'>/portal/{module=home}/{page=index}/{id?}</a></td>
+                <td>Маршрут со значениями по умолчанию. В ответе явно показать, какие значения были получены системой маршрутизации.</td>
+                <td>Text</td>
+            </tr>
+            <tr>
+                <td><a href='/files'>/files/{**path}</a></td>
+                <td>Catch-all маршрут: вернуть весь захваченный остаток пути после /files/. </td>
+                <td>Text</td>
+            </tr>
+        </table>
+
+        <h2>Диагностические маршруты</h2>
+        <table border='1'>
+            <tr>
+                <th>Маршрут</th>
+                <th>Ожидаемое поведение</th>
+                <th>Формат ответа</th>
+            </tr>
+            <tr>
+                <td><a href='/routes'>/routes</a></td>
+                <td>Вывести все зарегистрированные конечные точки приложения через EndpointDataSource.</td>
+                <td>Text</td>
+            </tr>
+            <tr>
+                <td><a href='/diag/lifetimes'>/diag/lifetimes</a></td>
+                <td>Показать идентификаторы и/или метки времени для singleton, scoped и transient в одном запросе.</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <td><a href='/diag/lifetimes/check'>/diag/lifetimes/check</a></td>
+                <td>Внутри одного запроса разрешить сервисы повторно и продемонстрировать, какие значения совпадают, а какие отличаются.</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <td><a href='/diag/request-services'>/diag/request-services</a></td>
+                <td>Получить зависимость через HttpContext.RequestServices.GetRequiredService(...) и вывести результат.</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <td><a href='/diag/app-services'>/diag/app-services</a></td>
+                <td>Получить singleton-сервис через app.Services.GetRequiredService(...) и вывести данные о приложении.</td>
+                <td>JSON</td>
+            </tr>
+        </table>
+
+    </body>
+</html>

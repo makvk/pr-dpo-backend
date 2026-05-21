@@ -35,13 +35,12 @@ public class RequestAuditMiddleware
         });
 
         await _next(context);
-        _logger.LogInformation("Заголовки ответа: {Instance}, {Request}, {Transient}", 
-            _appInfo.AppInstanceId, requestContext.RequestId, transientMarker.MarkerId);
-
-        _logger.LogInformation($"{context.Response.Headers["X-App-Instance"]}, {context.Response.Headers["X-Request-Id"]}, {context.Response.Headers["X-Transient-Id"]}");
+        
         if (context.Request.Path.StartsWithSegments("/diag"))
         {
-            _logger.LogInformation("Здесь будет краткая информация");
+            _logger.LogInformation("Заголовки: singleton, scooped, transient");
+            _logger.LogInformation($"{context.Response.Headers["X-App-Instance"]}, {context.Response.Headers["X-Request-Id"]}, {context.Response.Headers["X-Transient-Id"]}");
         }
+        _logger.LogInformation("Конец обработки запроса");
     }
 }

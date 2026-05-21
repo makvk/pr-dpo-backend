@@ -6,9 +6,15 @@ public class StudentCatalogService : IStudentCatalogService
 {
     private readonly List<Student> _students = new()
     {
-        new Student {Id = 1, Name = "Alice", Group = "ИКБО-30-24"},
-        new Student {Id = 2, Name = "Bob", Group = "ИКБО-30-24"},
-        new Student {Id = 3, Name = "Charlie", Group = "ИКБО-30-25"},
+        new Student {Id = 1, Name = "Vitalik", Group = "ИКБО-30-24"},
+        new Student {Id = 2, Name = "Anechka", Group = "ИКБО-30-24"},
+        new Student {Id = 3, Name = "Sabir", Group = "ИКБО-30-24"},
+        new Student {Id = 4, Name = "Stepan", Group = "ИКБО-30-24"},
+        new Student {Id = 5, Name = "Sashok", Group = "ИКБО-30-24"},
+
+        new Student {Id = 1, Name = "Oleg", Group = "ИКБО-69-24"},
+        new Student {Id = 2, Name = "Svin", Group = "ИКБО-69-24"},
+        new Student {Id = 3, Name = "Slon", Group = "ИКБО-69-24"},
     };
 
     public IEnumerable<Student> GetAllStudents() => _students;
