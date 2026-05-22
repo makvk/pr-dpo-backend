@@ -60,17 +60,21 @@ public static class DiagnosticEndpoints
             return Results.Json(res);
         });
 
-        app.MapGet("/diag/app-services", () =>
-        {
-            IAppInfoService service = app.Services.GetRequiredService<IAppInfoService>();
-
-            Lifetime res = new()
-            {
-                Name = "appInfo", Id = service.AppInstanceId, Time = service.StartedAt
-            };
-
-            return Results.Json(res);
-        });
+        app.MapGet("/diag/app-services", GetAppServices);
         return app;
+    }
+
+    private static IResult GetAppServices(HttpContext context)
+    {
+        IAppInfoService service = context.RequestServices.GetRequiredService<IAppInfoService>();
+
+        Lifetime res = new()
+        {
+            Name = "appInfo", 
+            Id = service.AppInstanceId, 
+            Time = service.StartedAt
+        };
+
+        return Results.Json(res);
     }
 }

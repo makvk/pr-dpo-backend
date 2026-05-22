@@ -6,8 +6,6 @@ using CampusRouteLab.Endpoints;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-// builder.Services.AddEndpointsApiExplorer();
-
 services.AddCampusServices();
 
 var app = builder.Build();

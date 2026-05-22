@@ -17,14 +17,14 @@ public static class BuisnessEndpoints
         {
             var students = service.GetAllStudents();
             
-            return Results.Ok(students);
+            return Results.Json(students);
         });
 
         app.MapGet("/students/{group}", (string group, IStudentCatalogService service) =>
         {
             var res = service.GetByGroup(group);
 
-            return Results.Ok(res);
+            return Results.Json(res);
         });
 
         app.MapGet("/students/{group}/{id:int}", (string group, int id, IStudentCatalogService service) =>
@@ -35,7 +35,7 @@ public static class BuisnessEndpoints
             {
                 return Results.NotFound();
             } 
-            return Results.Ok(res);
+            return Results.Json(res);
         });
 
         app.MapGet("/reports/{section?}", (string? section) =>
