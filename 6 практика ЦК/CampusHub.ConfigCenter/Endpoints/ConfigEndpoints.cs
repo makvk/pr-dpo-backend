@@ -62,6 +62,7 @@ public static class ConfigEndpoints
             }
             return Results.Json(section);
         });
+        
         return app;
     }
 }
