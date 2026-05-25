@@ -10,3 +10,4 @@ appsettings.Production.json
 *.user
 *.log
 TestResults/
+*.zip

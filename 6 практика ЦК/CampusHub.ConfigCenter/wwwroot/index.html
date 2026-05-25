@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Маршруты конфигурации — таблица с гиперссылками</title>
+    <!-- Чистый HTML, абсолютно без CSS -->
+</head>
+<body>
+
+<h1>Маршруты для тестирования конфигурации ASP.NET Core</h1>
+<p>Таблица содержит все тестовые эндпоинты. Гиперссылки ведут на соответствующие маршруты (относительные пути).</p>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Маршрут</th>
+            <th>Ожидаемое поведение</th>
+            <th>Какая тема проверяется</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- /  - стартовая страница -->
+        <tr>
+            <td><a href="/">/</a></td>
+            <td>Стартовая страница с кратким описанием проекта и ссылками на тестовые маршруты.</td>
+            <td>Терминальный endpoint</td>
+        </tr>
+        <!-- /config/raw -->
+        <tr>
+            <td><a href="/config/raw">/config/raw</a></td>
+            <td>Возвращает несколько значений через IConfiguration: например Portal:Title, Portal:SupportEmail, Notifications:Sender.</td>
+            <td>Индексатор IConfiguration и DI</td>
+        </tr>
+        <!-- /config/section/portal -->
+        <tr>
+            <td><a href="/config/section/portal">/config/section/portal</a></td>
+            <td>Показывает данные секции Portal через GetSection().</td>
+            <td>GetSection</td>
+        </tr>
+        <!-- /config/tree -->
+        <tr>
+            <td><a href="/config/tree">/config/tree</a></td>
+            <td>Рекурсивно выводит структуру секции Portal или другой выбранной секции.</td>
+            <td>GetChildren и анализ конфигурации</td>
+        </tr>
+        <!-- /config/connection -->
+        <tr>
+            <td><a href="/config/connection">/config/connection</a></td>
+            <td>Возвращает значение GetConnectionString("DefaultConnection").</td>
+            <td>GetConnectionString</td>
+        </tr>
+        <!-- /config/providers -->
+        <tr>
+            <td><a href="/config/providers">/config/providers</a></td>
+            <td>Показывает список провайдеров конфигурации из IConfigurationRoot.Providers.</td>
+            <td>Анализ провайдеров</td>
+        </tr>
+        <!-- /config/custom -->
+        <tr>
+            <td><a href="/config/custom">/config/custom</a></td>
+            <td>Возвращает значения, считанные собственным провайдером из customsettings.txt.</td>
+            <td>Custom provider</td>
+        </tr>
+        <!-- /config/bind -->
+        <tr>
+            <td><a href="/config/bind">/config/bind</a></td>
+            <td>Возвращает объект PortalOptions, полученный через Bind() или Get&lt;PortalOptions&gt;().</td>
+            <td>Проекция на классы</td>
+        </tr>
+        <!-- /config/options -->
+        <tr>
+            <td><a href="/config/options">/config/options</a></td>
+            <td>Возвращает значения из IOptions&lt;PortalOptions&gt; и IOptions&lt;NotificationOptions&gt;.</td>
+            <td>IOptions</td>
+        </tr>
+        <!-- /config/effective -->
+        <tr>
+            <td><a href="/config/effective">/config/effective</a></td>
+            <td>Показывает итоговые значения конфликтующих ключей и текущее окружение.</td>
+            <td>Объединение источников и приоритеты</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+
+</body>
+</html>
