@@ -3,13 +3,10 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CampusHub.ConfigCenter.Configuration;
 
-public class TextConfigurationProvider : ConfigurationProvider
+public class TextConfigurationProvider(string filePath) : ConfigurationProvider
 {
-    private readonly string _filePath;
-    public TextConfigurationProvider(string filePath)
-    {
-        _filePath = filePath;
-    }
+    private readonly string _filePath = filePath;
+
     public override void Load()
     {
         var data = new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
@@ -23,5 +20,6 @@ public class TextConfigurationProvider : ConfigurationProvider
                 data.Add(key, value);
             }
         }
+        this.Data = data;
     }
 }

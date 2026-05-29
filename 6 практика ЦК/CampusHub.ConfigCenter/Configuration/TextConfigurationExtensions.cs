@@ -3,10 +3,7 @@ public static class TextConfigurationExtensions
 {
     public static IConfigurationBuilder AddTextFile(this IConfigurationBuilder builder, string path)
     {
-        if (builder == null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        ArgumentNullException.ThrowIfNull(builder);
         if (string.IsNullOrEmpty(path))
         {
             throw new ArgumentException("Путь к файлу не найден");
