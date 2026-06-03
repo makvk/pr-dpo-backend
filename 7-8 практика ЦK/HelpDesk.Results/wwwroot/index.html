@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HelpDesk Results - Тестовые маршруты</title>
+</head>
+<body>
+    <h1>HelpDesk Results API</h1>
+    <p>Краткое описание проекта: Тестовое API для демонстрации различных типов результатов и обработки ошибок в ASP.NET Core.</p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Запрос</th>
+                <th>Ожидаемое поведение</th>
+                <th>Какая тема проверяется</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="/">/</a></td>
+                <td>Главная HTML-страница с кратким описанием проекта и ссылками на тестовые маршруты. Должна быть сформирована через собственный IResult.</td>
+                <td>Custom IResult</td>
+            </tr>
+            <tr>
+                <td><a href="/about/text">/about/text</a></td>
+                <td>Возвращает простой текст через Results.Text(...).</td>
+                <td>Text result</td>
+            </tr>
+            <tr>
+                <td><a href="/about/content">/about/content</a></td>
+                <td>Возвращает текст через Results.Content(...) с явно заданным MIME-типом и кодировкой.</td>
+                <td>Content result</td>
+            </tr>
+            <tr>
+                <td><a href="/api/tickets">/api/tickets</a></td>
+                <td>Возвращает список заявок в JSON.</td>
+                <td>Json / Ok</td>
+            </tr>
+            <tr>
+                <td><a href="/api/tickets/1">/api/tickets/1</a></td>
+                <td>Возвращает найденную заявку со статусом 200.</td>
+                <td>Ok + маршрут с параметром</td>
+            </tr>
+            <tr>
+                <td><a href="/api/tickets/999">/api/tickets/999</a></td>
+                <td>Если заявки нет, возвращает 404 и сообщение.</td>
+                <td>NotFound</td>
+            </tr>
+            <tr>
+                <td><a href="/api/tickets/create?title=Printer&priority=2">/api/tickets/create?title=Printer&priority=2</a></td>
+                <td>Создает учебную заявку и возвращает 201 или 200 с данными созданной заявки.</td>
+                <td>Created / Ok + Json</td>
+            </tr>
+            <tr>
+                <td><a href="/api/tickets/create?priority=2">/api/tickets/create?priority=2</a></td>
+                <td>Без title возвращает 400 с объяснением ошибки.</td>
+                <td>BadRequest</td>
+            </tr>
+            <tr>
+                <td><a href="/status/unauthorized">/status/unauthorized</a></td>
+                <td>Возвращает 401.</td>
+                <td>Unauthorized</td>
+            </tr>
+            <tr>
+                <td><a href="/status/forbidden">/status/forbidden</a></td>
+                <td>Возвращает 403 через Results.StatusCode(403) или эквивалентный результат.</td>
+                <td>StatusCode</td>
+            </tr>
+            <tr>
+                <td><a href="/status/custom/418">/status/custom/418</a></td>
+                <td>Возвращает произвольный статус-код 418 через Results.StatusCode(...).</td>
+                <td>StatusCode</td>
+            </tr>
+            <tr>
+                <td><a href="/redirect/old-tickets">/redirect/old-tickets</a></td>
+                <td>Выполняет локальную переадресацию на /api/tickets.</td>
+                <td>LocalRedirect</td>
+            </tr>
+            <tr>
+                <td><a href="/redirect/ticket/1">/redirect/ticket/1</a></td>
+                <td>Выполняет переадресацию на именованный маршрут заявки.</td>
+                <td>RedirectToRoute</td>
+            </tr>
+            <tr>
+                <td><a href="/files/readme">/files/readme</a></td>
+                <td>Отдает файл readme.txt с корректным Content-Type и именем загрузки.</td>
+                <td>File result</td>
+            </tr>
+            <tr>
+                <td><a href="/throw">/throw</a></td>
+                <td>Генерирует исключение для проверки UseExceptionHandler / DeveloperExceptionPage.</td>
+                <td>Exception handling</td>
+            </tr>
+            <tr>
+                <td><a href="/unknown">/unknown</a></td>
+                <td>Возвращает 404 с понятным текстом или JSON, а не пустую.</td>
+                <td>StatusCodePages</td>
+            </tr>
+            <tr>
+                <td><a href="/send-html">/send-html</a></td>
+                <td>Отправляет html через кастомный IResult</td>
+                <td>IResult</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

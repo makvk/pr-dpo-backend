@@ -1,1 +1,0 @@
-namespace HelpDesk.Results.Results;
